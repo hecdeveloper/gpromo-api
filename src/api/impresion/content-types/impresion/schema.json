@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "impresions",
+  "info": {
+    "singularName": "impresion",
+    "pluralName": "impresions",
+    "displayName": "impresion",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nombreTecnica": {
+      "type": "string"
+    },
+    "productos": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product-padre.product-padre",
+      "mappedBy": "impresions"
+    }
+  }
+}

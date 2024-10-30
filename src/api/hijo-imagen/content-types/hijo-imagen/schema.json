@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hijo_imagens",
+  "info": {
+    "singularName": "hijo-imagen",
+    "pluralName": "hijo-imagens",
+    "displayName": "HijoImagen"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "urlImagenHijo": {
+      "type": "string"
+    },
+    "hijo": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::hijo.hijo",
+      "inversedBy": "hijo_imagens"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "padre_imagens",
+  "info": {
+    "singularName": "padre-imagen",
+    "pluralName": "padre-imagens",
+    "displayName": "PadreImagen"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "urlImagen": {
+      "type": "text"
+    },
+    "producto": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product-padre.product-padre",
+      "mappedBy": "padre_imagen"
+    }
+  }
+}

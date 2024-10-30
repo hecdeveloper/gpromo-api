@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hijos",
+  "info": {
+    "singularName": "hijo",
+    "pluralName": "hijos",
+    "displayName": "Hijo",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "skuHijo": {
+      "type": "string"
+    },
+    "nombreHijo": {
+      "type": "string"
+    },
+    "color": {
+      "type": "string"
+    },
+    "tipo": {
+      "type": "string"
+    },
+    "talla": {
+      "type": "string"
+    },
+    "hijo_imagens": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::hijo-imagen.hijo-imagen",
+      "mappedBy": "hijo"
+    },
+    "producto": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product-padre.product-padre",
+      "inversedBy": "hijos"
+    }
+  }
+}

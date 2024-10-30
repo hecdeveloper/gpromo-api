@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "product_padres",
+  "info": {
+    "singularName": "product-padre",
+    "pluralName": "product-padres",
+    "displayName": "Producto",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "skuPadre": {
+      "type": "string"
+    },
+    "nombrePadre": {
+      "type": "string"
+    },
+    "descripcion": {
+      "type": "text"
+    },
+    "capacidad": {
+      "type": "string"
+    },
+    "medidas": {
+      "type": "string"
+    },
+    "categorias": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::categoria.categoria",
+      "inversedBy": "productos"
+    },
+    "materials": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::material.material",
+      "inversedBy": "productos"
+    },
+    "padre_imagen": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::padre-imagen.padre-imagen",
+      "inversedBy": "producto"
+    },
+    "impresions": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::impresion.impresion",
+      "inversedBy": "productos"
+    },
+    "hijos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::hijo.hijo",
+      "mappedBy": "producto"
+    }
+  }
+}
