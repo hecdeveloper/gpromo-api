@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "image_cards",
+  "info": {
+    "singularName": "image-card",
+    "pluralName": "image-cards",
+    "displayName": "Image Cards"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "alt": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "buttonText": {
+      "type": "string"
+    },
+    "redirectTo": {
+      "type": "string"
+    }
+  }
+}

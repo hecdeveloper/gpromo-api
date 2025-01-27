@@ -896,6 +896,42 @@ export interface ApiHijoImagenHijoImagen extends Schema.CollectionType {
   };
 }
 
+export interface ApiImageCardImageCard extends Schema.CollectionType {
+  collectionName: 'image_cards';
+  info: {
+    singularName: 'image-card';
+    pluralName: 'image-cards';
+    displayName: 'Image Cards';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    alt: Attribute.String;
+    subtitle: Attribute.String;
+    title: Attribute.String;
+    description: Attribute.String;
+    buttonText: Attribute.String;
+    redirectTo: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::image-card.image-card',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::image-card.image-card',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiImpresionImpresion extends Schema.CollectionType {
   collectionName: 'impresions';
   info: {
@@ -1084,6 +1120,7 @@ declare module '@strapi/types' {
       'api::categoria.categoria': ApiCategoriaCategoria;
       'api::hijo.hijo': ApiHijoHijo;
       'api::hijo-imagen.hijo-imagen': ApiHijoImagenHijoImagen;
+      'api::image-card.image-card': ApiImageCardImageCard;
       'api::impresion.impresion': ApiImpresionImpresion;
       'api::material.material': ApiMaterialMaterial;
       'api::padre-imagen.padre-imagen': ApiPadreImagenPadreImagen;
