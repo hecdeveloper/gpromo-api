@@ -1,8 +1,18 @@
-// export default () => ({});
-
-// import { Strapi } from '@strapi/strapi';
-
-export default () => ({
+export default ({ env }) => ({
+  upload: {
+    config: {
+      provider: 'cloudinary',
+      providerOptions: {
+        cloud_name: env('CLOUDINARY_NAME'),
+        api_key: env('CLOUDINARY_KEY'),
+        api_secret: env('CLOUDINARY_SECRET'),
+      },
+      actionOptions: {
+        upload: {},
+        delete: {},
+      },
+    },
+  },
   transformer: {
     enabled: true,
     config: {
@@ -16,30 +26,28 @@ export default () => ({
             if (Array.isArray(data)) {
               data.forEach((item) => removeTimestamps(item));
             } else if (typeof data === "object" && data !== null) {
-              // delete data.id;
+              // Elimina campos de timestamps
               delete data.createdAt;
               delete data.updatedAt;
               delete data.publishedAt;
 
+              // Procesa campos específicos
               if (data.padre_imagens && Array.isArray(data.padre_imagens)) {
-                data.padre_imagens = data.padre_imagens.map((imagen) => imagen.urlImagen); // Sobrescribe el arreglo solo con los valores
+                data.padre_imagens = data.padre_imagens.map((imagen) => imagen.urlImagen);
               }
 
-              // Recorrer todas las propiedades para encontrar objetos anidados
+              // Recorre todas las propiedades para procesar objetos anidados
               Object.keys(data).forEach((key) => {
                 if (Array.isArray(data[key])) {
-                  removeTimestamps(data[key]); // Llamada recursiva para arreglos
-                } else if (
-                  typeof data[key] === "object" &&
-                  data[key] !== null
-                ) {
-                  removeTimestamps(data[key]); // Llamada recursiva para objetos
+                  removeTimestamps(data[key]);
+                } else if (typeof data[key] === "object" && data[key] !== null) {
+                  removeTimestamps(data[key]);
                 }
               });
             }
           };
 
-          // Llamar a la función para eliminar los campos
+          // Aplica la función de transformación
           if (ctx.body.data) {
             removeTimestamps(ctx.body.data);
           }
@@ -52,5 +60,4 @@ export default () => ({
       },
     },
   },
-  // ..
 });
