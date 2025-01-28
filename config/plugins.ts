@@ -9,11 +9,7 @@ export default ({ env }) => ({
       },
       actionOptions: {
         upload: {
-          folder: 'gpromo/uploads', // Ruta del folder en Cloudinary
-          use_filename: true, // Usar el nombre del archivo como public ID
-          unique_filename: false, // No generar nombres únicos aleatorios
-          overwrite: true, // Sobrescribir archivos con el mismo public ID
-          upload_preset: 'gpromo-uploads', // Nombre del preset creado en Cloudinary
+          upload_preset: 'gpromo-uploads', // Asegúrate que coincide con el preset de Cloudinary
         },
         delete: {},
       },
