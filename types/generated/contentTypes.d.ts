@@ -824,6 +824,42 @@ export interface ApiCategoriaCategoria extends Schema.CollectionType {
   };
 }
 
+export interface ApiHeroBannerHeroBanner extends Schema.CollectionType {
+  collectionName: 'hero_banners';
+  info: {
+    singularName: 'hero-banner';
+    pluralName: 'hero-banners';
+    displayName: 'HeroBanner';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    subtitle: Attribute.String;
+    buttonText: Attribute.String;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    order: Attribute.Integer;
+    buttonLink: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::hero-banner.hero-banner',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::hero-banner.hero-banner',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiHijoHijo extends Schema.CollectionType {
   collectionName: 'hijos';
   info: {
@@ -1118,6 +1154,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::categoria.categoria': ApiCategoriaCategoria;
+      'api::hero-banner.hero-banner': ApiHeroBannerHeroBanner;
       'api::hijo.hijo': ApiHijoHijo;
       'api::hijo-imagen.hijo-imagen': ApiHijoImagenHijoImagen;
       'api::image-card.image-card': ApiImageCardImageCard;
