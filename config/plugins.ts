@@ -1,7 +1,9 @@
+import type { Strapi } from '@strapi/strapi';
+
 export default ({ env }) => ({
   upload: {
     config: {
-      provider: 'cloudinary',
+      provider: '@strapi/provider-upload-cloudinary',
       providerOptions: {
         cloud_name: env('CLOUDINARY_CLOUD_NAME'),
         api_key: env('CLOUDINARY_API_KEY'),
@@ -9,7 +11,20 @@ export default ({ env }) => ({
       },
       actionOptions: {
         upload: {
-          upload_preset: 'gpromo-uploads', // Asegúrate que coincide con el preset de Cloudinary
+          folder: 'gpromo-uploads',
+          // Configuración de transformaciones de imagen
+          breakpoints: {
+            thumbnail: 245,  // Para miniaturas en el panel admin
+            small: 500,     // Tamaños adicionales que podrías necesitar
+            medium: 750,
+            large: 1000,
+          },
+          // Configuraciones adicionales de Cloudinary
+          resource_type: 'auto',
+          transformation: {
+            quality: 'auto:good',
+            fetch_format: 'auto',
+          },
         },
         delete: {},
       },
@@ -18,13 +33,14 @@ export default ({ env }) => ({
   transformer: {
     enabled: true,
     config: {
+      prefix: '/api/',
       responseTransforms: {
         removeAttributesKey: true,
         removeDataKey: true,
       },
       hooks: {
-        postResponseTransform: (ctx) => {
-          const removeTimestamps = (data) => {
+        postResponseTransform: (ctx: any) => {
+          const removeTimestamps = (data: any) => {
             if (Array.isArray(data)) {
               data.forEach((item) => removeTimestamps(item));
             } else if (typeof data === "object" && data !== null) {
@@ -35,7 +51,17 @@ export default ({ env }) => ({
 
               // Procesa campos específicos
               if (data.padre_imagens && Array.isArray(data.padre_imagens)) {
-                data.padre_imagens = data.padre_imagens.map((imagen) => imagen.urlImagen);
+                data.padre_imagens = data.padre_imagens.map((imagen: any) => imagen.urlImagen);
+              }
+
+              // Procesa imágenes y formatos
+              if (data.formats) {
+                // Asegura que los formatos de imagen estén correctos
+                Object.keys(data.formats).forEach((format) => {
+                  if (data.formats[format] && !data.formats[format].url) {
+                    delete data.formats[format];
+                  }
+                });
               }
 
               // Recorre todas las propiedades para procesar objetos anidados
