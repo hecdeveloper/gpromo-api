@@ -938,6 +938,7 @@ export interface ApiImageCardImageCard extends Schema.CollectionType {
     singularName: 'image-card';
     pluralName: 'image-cards';
     displayName: 'Image Cards';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -950,6 +951,7 @@ export interface ApiImageCardImageCard extends Schema.CollectionType {
     description: Attribute.String;
     buttonText: Attribute.String;
     redirectTo: Attribute.String;
+    order: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

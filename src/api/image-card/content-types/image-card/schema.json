@@ -4,7 +4,8 @@
   "info": {
     "singularName": "image-card",
     "pluralName": "image-cards",
-    "displayName": "Image Cards"
+    "displayName": "Image Cards",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,14 +13,15 @@
   "pluginOptions": {},
   "attributes": {
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "alt": {
       "type": "string"
@@ -38,6 +40,9 @@
     },
     "redirectTo": {
       "type": "string"
+    },
+    "order": {
+      "type": "integer"
     }
   }
 }
