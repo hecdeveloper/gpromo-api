@@ -12,19 +12,13 @@ export default ({ env }) => ({
       actionOptions: {
         upload: {
           folder: 'gpromo-uploads',
-          // Configuración de transformaciones de imagen
-          breakpoints: {
-            thumbnail: 245,  // Para miniaturas en el panel admin
-            small: 500,     // Tamaños adicionales que podrías necesitar
-            medium: 750,
-            large: 1000,
-          },
-          // Configuraciones adicionales de Cloudinary
+          transformation: [
+            { width: 245, height: 245, crop: 'fill', gravity: 'auto' }, // Miniatura
+            { width: 500, height: 500, crop: 'fill', gravity: 'auto' }, // Pequeño
+            { width: 750, height: 750, crop: 'fill', gravity: 'auto' }, // Mediano
+            { width: 1000, height: 1000, crop: 'fill', gravity: 'auto' }, // Grande
+          ],
           resource_type: 'auto',
-          transformation: {
-            quality: 'auto:good',
-            fetch_format: 'auto',
-          },
         },
         delete: {},
       },
