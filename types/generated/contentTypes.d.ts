@@ -788,41 +788,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiCatalogospaginaCatalogospagina extends Schema.SingleType {
-  collectionName: 'catalogospaginas';
-  info: {
-    singularName: 'catalogospagina';
-    pluralName: 'catalogospaginas';
-    displayName: 'catalogospagina';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    tituloprincipal: Attribute.String & Attribute.Required;
-    catalogosprincipales: Attribute.Component<'catalogo.catalogocard', true>;
-    titulosecundario: Attribute.String;
-    catalogossecundarios: Attribute.Component<'catalogo.catalogocard', true>;
-    bannerimage: Attribute.Media<'images'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::catalogospagina.catalogospagina',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::catalogospagina.catalogospagina',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiCategoriaCategoria extends Schema.CollectionType {
   collectionName: 'categorias';
   info: {
@@ -1190,7 +1155,6 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::catalogospagina.catalogospagina': ApiCatalogospaginaCatalogospagina;
       'api::categoria.categoria': ApiCategoriaCategoria;
       'api::hero-banner.hero-banner': ApiHeroBannerHeroBanner;
       'api::hijo.hijo': ApiHijoHijo;
