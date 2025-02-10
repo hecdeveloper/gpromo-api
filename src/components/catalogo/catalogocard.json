@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_catalogo_catalogocards",
+  "info": {
+    "displayName": "catalogocard",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "titulo": {
+      "type": "string",
+      "required": true
+    },
+    "imagen": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "tituloboton": {
+      "type": "string",
+      "required": true,
+      "default": "VER CATÁLOGO"
+    },
+    "linkboton": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "kind": "singleType",
+  "collectionName": "catalogospaginas",
+  "info": {
+    "singularName": "catalogospagina",
+    "pluralName": "catalogospaginas",
+    "displayName": "catalogospagina",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "tituloprincipal": {
+      "type": "string",
+      "required": true
+    },
+    "catalogosprincipales": {
+      "type": "component",
+      "repeatable": true,
+      "component": "catalogo.catalogocard"
+    },
+    "titulosecundario": {
+      "type": "string",
+      "required": false
+    },
+    "catalogossecundarios": {
+      "type": "component",
+      "repeatable": true,
+      "component": "catalogo.catalogocard"
+    },
+    "bannerimage": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
